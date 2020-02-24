@@ -1,0 +1,36 @@
+<!DOCTYPE.html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View-Pilot</title>
+</head>
+
+<body>
+	<h1>View Pilot</h1>
+	<form th:action="@{/pilot/view}" method="GET">
+		<table style="width: 50%">
+			<tr>
+				<td style="width: 25%"><h3>Pilot License Number</h3></td>
+				<td><h2 th:text="': '+${pilot.licenseNumber}"></h2></td>
+			</tr>
+			<tr>
+				<td style="width: 25%"><h3>Name</h3></td>
+				<td><h2 th:text="': '+${pilot.name}"></h2></td>
+			</tr>
+			<tr>
+				<td style="width: 25%"><h3>Fly Hour</h3></td>
+				<td><h2 th:text="': '+${pilot.flyHour}"></h2></td>
+			</tr>
+		</table>
+	</form>
+	<div th:each="flight: ${listFlight}">
+		==================================================
+		<h4 th:text="'Flight Number : ' + ${flight.flightNumber}"></h4>
+		<h4 th:text="'Flight Destination : ' + ${flight.destination}"></h4>
+		<h4 th:text="'Flight Origin : ' + ${flight.origin}"></h4>
+		<h4 th:text="'Departure Time: ' + ${flight.time}"></h4>
+	</div>
+	<form th:action="@{'/flight/add/'+${pilot.licenseNumber}}" method="GET">
+		<button type="submit">Add Flight</button>
+	</form>
+</body>
+</html>
