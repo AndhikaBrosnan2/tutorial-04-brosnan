@@ -42,9 +42,6 @@ public class PilotModel implements Serializable {
 	
 	
 	// setter and getter
-	
-	
-	
 	public PilotModel(long id, @NotNull @Size(max = 50) String licenseNumber, @NotNull @Size(max = 50) String name,
 			@NotNull int flyHour, List<FlightModel> pilotFlight) {
 		super();

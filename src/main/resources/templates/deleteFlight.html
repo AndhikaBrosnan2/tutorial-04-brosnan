@@ -1,0 +1,15 @@
+<!DOCTYPE.html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Hapus</title>
+	</head>
+	
+	<body>
+		<h3>Hapus Flight</h3>
+		<form th:action="@{/flight/delete}" method="GET">
+			Flight Number: <br>
+			<input type="text" name="flightNumber"/>
+			<button type="submit">Hapus</button>
+		</form>
+	</body>
+</html>

@@ -35,4 +35,8 @@ public class PilotServiceImpl implements PilotService {
 		
 	}
 	
+	@Override
+	public void delPilot(PilotModel pilot) {
+		pilotDb.deleteById(pilot.getId());
+	}
 }

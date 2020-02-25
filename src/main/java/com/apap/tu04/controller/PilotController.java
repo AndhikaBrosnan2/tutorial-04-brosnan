@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +23,7 @@ public class PilotController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/pilot/view", method=RequestMethod.GET)
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
 	public String view(@RequestParam(value = "licenseNumber", required = false) String licenseNumber, Model model) {
 
 		PilotModel archive = pilotService.getPilotdetailByLicenseNumber(licenseNumber);
@@ -31,9 +32,9 @@ public class PilotController {
 			model.addAttribute("licenseNumber", "error message");
 			return "errorPage";
 		}
-		
+
 		model.addAttribute("pilot", archive);
-		model.addAttribute("listFlight",archive.getPilotFlight());
+		model.addAttribute("listFlight", archive.getPilotFlight());
 		return "view-pilot";
 	}
 
@@ -50,4 +51,11 @@ public class PilotController {
 		return "add";
 	}
 
+	@RequestMapping(value = "/pilot/delete", method = RequestMethod.GET)
+	private String deletePilotSubmit(@RequestParam(value = "licenseNumber") String licenseNumber, Model model) {
+		PilotModel pickPilot = pilotService.getPilotdetailByLicenseNumber(licenseNumber);
+		model.addAttribute("pickPilot", pickPilot);
+		pilotService.delPilot(pickPilot);
+		return "delete";
+	}
 }
